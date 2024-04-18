@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_api_service.dart';
+part of 'search_api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'auth_api_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _AuthApiService implements AuthApiService {
-  _AuthApiService(
+class _SearchApiService implements SearchApiService {
+  _SearchApiService(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,21 +21,21 @@ class _AuthApiService implements AuthApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<Auth>> getAuth(Map<String, dynamic> body) async {
+  Future<HttpResponse<Users>> searchUser(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<Auth>>(Options(
-      method: 'POST',
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<Users>>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/cards-hive-back/api/login',
+              '/search/users?q=el',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -44,7 +44,7 @@ class _AuthApiService implements AuthApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Auth.fromJson(_result.data!);
+    final value = Users.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

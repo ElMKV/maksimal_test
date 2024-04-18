@@ -1,45 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maksimal_test/features/home/presentation/bloc/search_bloc.dart';
+import 'package:maksimal_test/injection_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text('ewfv'),
+    return BlocProvider(
+      create: (context) => sl<SearchBloc>()..add(SearchUsers('value')),
+      child: Scaffold(
+        appBar: AppBar(title: Text("CardsHive")),
+        body: _buildBody(),
+      ),
     );
-    // return BlocProvider(
-    //   create: (context) => ConstructorBloc(),
-    //   child: Scaffold(
-    //     appBar: AppBar(title: Text("CardsHive")),
-    //     body: _buildBody(),
-    //   ),
-    // );
   }
 
-  // _buildBody() {
-  //   return BlocBuilder<ConstructorBloc, ConstructorState>(
-  //     builder: (_, state) {
-  //       // if (state is ConstructorLoading) {
-  //       //   return const Center(child: CupertinoActivityIndicator());
-  //       // }
-  //       // if (state is ConstructorError) {
-  //       //   return const Center(child: Icon(Icons.refresh));
-  //       // }
-  //       // if (state is ConstructorDone) {
-  //       //   return Text('Констурктор в разработке');
-  //       // }
-  //       return InAppWebView(
-  //         onReceivedHttpAuthRequest: (InAppWebViewController controller, URLAuthenticationChallenge challenge) async {
-  //           return HttpAuthResponse(username: "admin", password: "11111111", action: HttpAuthResponseAction.PROCEED);
-  //         },
-  //           initialUrlRequest:
-  //       URLRequest(url: WebUri("http://194.32.248.155")),
-  //       );
-  //     },
-  //   );
-  // }
-
+  _buildBody() {
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (_, state) {
+        if (state is SearchLoading) {
+          return const Center(child: CupertinoActivityIndicator());
+        }
+        if (state is SearchError) {
+          return const Center(child: Icon(Icons.refresh));
+        }
+        if (state is SearchDone) {
+          return Text('Констурктор в разработке');
+        }
+        return SizedBox();
+      },
+    );
+  }
 }
 

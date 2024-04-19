@@ -17,7 +17,7 @@ class SearchRepositoryImpl implements SearchRepository {
   @override
   Future<DataState<Users>> searchUser(body) async {
     try {
-      final httpResponse = await _searchApiService.searchUser({});
+      final httpResponse = await _searchApiService.searchUser(body);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         print(httpResponse.data.totalCount);

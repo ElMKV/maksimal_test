@@ -10,29 +10,56 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<SearchBloc>()..add(SearchUsers('value')),
+      create: (context) => sl<SearchBloc>(),
       child: Scaffold(
-        appBar: AppBar(title: Text("CardsHive")),
+        appBar: AppBar(title: Text(";smldfv")),
         body: _buildBody(),
       ),
     );
   }
 
   _buildBody() {
+    return Column(
+      children: [
+        _buildTextField(),
+        BlocConsumer<SearchBloc, SearchState>(
+          listener: (context, state) {
+            if (state is SearchError) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.pageState.error)));
+            }
+          },
+          builder: (context, state) {
+            final spu = state.pageState.users;
+            if (state is SearchLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: spu.items.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(spu.items[index].login),
+                );
+              },
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTextField() {
     return BlocBuilder<SearchBloc, SearchState>(
-      builder: (_, state) {
-        if (state is SearchLoading) {
-          return const Center(child: CupertinoActivityIndicator());
-        }
-        if (state is SearchError) {
-          return const Center(child: Icon(Icons.refresh));
-        }
-        if (state is SearchDone) {
-          return Text('Констурктор в разработке');
-        }
-        return SizedBox();
+      builder: (context, state) {
+        return TextField(
+          onSubmitted: (value) => _onChangeTextField(context, value),
+        );
       },
     );
   }
-}
 
+  void _onChangeTextField(BuildContext context, String value) {
+    BlocProvider.of<SearchBloc>(context).add(SearchUsers(value));
+  }
+}

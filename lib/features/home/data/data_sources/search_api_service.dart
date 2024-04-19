@@ -10,6 +10,6 @@ part 'search_api_service.g.dart';
 abstract class SearchApiService {
   factory SearchApiService(Dio dio) = _SearchApiService;
 
-  @GET('/search/users?q=el')
-  Future<HttpResponse<Users>> searchUser(@Body() Map<String, dynamic> body);
+  @GET('/search/users')
+  Future<HttpResponse<Users>> searchUser( @Query('q') String query);
 }

@@ -21,12 +21,11 @@ class _SearchApiService implements SearchApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<Users>> searchUser(Map<String, dynamic> body) async {
+  Future<HttpResponse<Users>> searchUser(String query) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': query};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<Users>>(Options(
       method: 'GET',
@@ -35,7 +34,7 @@ class _SearchApiService implements SearchApiService {
     )
             .compose(
               _dio.options,
-              '/search/users?q=el',
+              '/search/users',
               queryParameters: queryParameters,
               data: _data,
             )

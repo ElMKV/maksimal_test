@@ -44,7 +44,7 @@ class S {
   //errors
   static const String error_title = "Ошибка";
   static const String auth_error = "Ошибка авторизации";
-  static const String profile_error = "Ошибка получения профиля";
+  static const String profile_error = "Ошибка получения профилей";
 
 
 }

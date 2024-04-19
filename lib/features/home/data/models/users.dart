@@ -41,9 +41,15 @@ class Users {
 class Items {
   @JsonKey(name: 'login')
   final String login;
+  @JsonKey(name: 'avatar_url')
+  final String avatarUrl;
+  @JsonKey(name: 'followers_url')
+  final String followersUrl;
 
   const Items({
     this.login = '',
+    this.avatarUrl = '',
+    this.followersUrl = '',
 
   });
 
@@ -54,9 +60,13 @@ class Items {
 
   Items copyWith({
     String? login,
+    String? avatarUrl,
+    String? followersUrl,
   }) {
     return Items(
       login: login ?? this.login,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+      followersUrl: followersUrl ?? this.followersUrl,
 
     );
   }

@@ -21,8 +21,12 @@ Map<String, dynamic> _$UsersToJson(Users instance) => <String, dynamic>{
 
 Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
       login: json['login'] as String? ?? '',
+      avatarUrl: json['avatar_url'] as String? ?? '',
+      followersUrl: json['followers_url'] as String? ?? '',
     );
 
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
       'login': instance.login,
+      'avatar_url': instance.avatarUrl,
+      'followers_url': instance.followersUrl,
     };

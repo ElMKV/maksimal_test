@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maksimal_test/features/home/presentation/bloc/search_bloc.dart';
+import 'package:maksimal_test/features/home/presentation/widgets/user_card.dart';
 import 'package:maksimal_test/injection_container.dart';
 
 class HomePage extends StatelessWidget {
@@ -34,14 +35,14 @@ class HomePage extends StatelessWidget {
             if (state is SearchLoading) {
               return const Center(child: CircularProgressIndicator());
             }
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: spu.items.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(spu.items[index].login),
-                );
-              },
+            return Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: spu.items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return UserCard(user: spu.items[index],);
+                },
+              ),
             );
           },
         ),
@@ -53,13 +54,14 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         return TextField(
-          onSubmitted: (value) => _onChangeTextField(context, value),
+          style: TextStyle(color: Colors.black),
+          onSubmitted: (value) => _onSubmittedTextField(context, value),
         );
       },
     );
   }
 
-  void _onChangeTextField(BuildContext context, String value) {
+  void _onSubmittedTextField(BuildContext context, String value) {
     BlocProvider.of<SearchBloc>(context).add(SearchUsers(value));
   }
 }

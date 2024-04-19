@@ -7,6 +7,7 @@ import 'package:maksimal_test/features/authorization/domain/usecases/get_auth.da
 import 'package:maksimal_test/features/home/data/data_sources/search_api_service.dart';
 import 'package:maksimal_test/features/home/data/repository/search_repository_impl.dart';
 import 'package:maksimal_test/features/home/domain/repository/search_repository.dart';
+import 'package:maksimal_test/features/home/domain/usecases/followers_user.dart';
 import 'package:maksimal_test/features/home/domain/usecases/search_user.dart';
 import 'package:maksimal_test/features/home/presentation/bloc/search_bloc.dart';
 
@@ -29,8 +30,9 @@ Future<void> initializeDependencies() async {
   // Use cases
   sl.registerLazySingleton(() => GetAuthUseCase(sl()));
   sl.registerLazySingleton(() => SearchUserUseCase(sl()));
+  sl.registerLazySingleton(() => FollowersUserUseCase(sl()));
 
   // Blocs
   sl.registerFactory(() => AuthBloc(sl()));
-  sl.registerFactory(() => SearchBloc(sl()));
+  sl.registerFactory(() => SearchBloc(sl(), sl()));
 }

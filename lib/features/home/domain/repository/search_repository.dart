@@ -5,4 +5,5 @@ import 'package:maksimal_test/features/home/data/models/users.dart';
 abstract class SearchRepository {
   // API Methods
   Future<DataState<Users>> searchUser(String body);
+  Future<DataState<List<Items>>> getFollowersUser(String body);
 }

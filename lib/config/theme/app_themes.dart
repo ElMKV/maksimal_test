@@ -3,6 +3,30 @@ import 'package:flutter/material.dart';
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontSize: 14.0,
+      ),
+      displayLarge: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    colorScheme: const ColorScheme(
+      surface: Colors.black,
+      onSurface: Colors.white,
+      secondaryContainer: Colors.white,
+      brightness: Brightness.light,
+      primary: Colors.white,
+      onPrimary: Colors.white,
+      secondary: Colors.white,
+      onSecondary: Colors.white,
+      error: Colors.red,
+      onError: Colors.red,
+      background: Colors.white,
+      onBackground: Colors.black
+
+    ),
     appBarTheme: appBarTheme(),
   );
 }

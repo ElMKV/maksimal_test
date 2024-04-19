@@ -11,5 +11,8 @@ abstract class SearchApiService {
   factory SearchApiService(Dio dio) = _SearchApiService;
 
   @GET('/search/users')
-  Future<HttpResponse<Users>> searchUser( @Query('q') String query);
+  Future<HttpResponse<Users>> searchUser(@Query('q') String query);
+
+  @GET('/users/{login}/followers')
+  Future<HttpResponse<List<Items>>> getFollowersUser(@Path() String login);
 }

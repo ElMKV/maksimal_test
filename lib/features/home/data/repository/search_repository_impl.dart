@@ -37,4 +37,27 @@ class SearchRepositoryImpl implements SearchRepository {
       return DataFailed(e);
     }
   }
+
+  @override
+  Future<DataState<List<Items>>> getFollowersUser(login) async {
+    try {
+      final httpResponse = await _searchApiService.getFollowersUser(login);
+      print(httpResponse.response.realUri.toString());
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(
+          DioException(
+            requestOptions: httpResponse.response.requestOptions,
+            response: httpResponse.response,
+            error: httpResponse.response.statusMessage,
+            type: DioExceptionType.badResponse,
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      print(e);
+      return DataFailed(e);
+    }
+  }
 }

@@ -18,6 +18,9 @@ class SearchLoading extends SearchState {
 class SearchError extends SearchState {
   const SearchError(PageState pageState) : super(pageState);
 }
+class FollowersError extends SearchState {
+  const FollowersError(PageState pageState) : super(pageState);
+}
 
 class SearchDone extends SearchState {
   const SearchDone(PageState pageState) : super(pageState);
@@ -25,20 +28,28 @@ class SearchDone extends SearchState {
 
 class PageState {
   final String error;
+  final String fError;
   final Users users;
+  final String fCount;
 
   PageState({
     this.users = const Users(),
     this.error = '',
+    this.fError = '',
+    this.fCount = '',
   });
 
   PageState copyWith({
     Users? users,
+    String? fError,
     String? error,
+    String? fCount,
   }) {
     return PageState(
       users: users ?? this.users,
+      fError: fError ?? this.fError,
       error: error ?? this.error,
+      fCount: fCount ?? this.fCount,
     );
   }
 }

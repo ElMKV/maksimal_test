@@ -1,4 +1,4 @@
-#Sat Apr 20 13:17:26 YEKT 2024
+#Sat Apr 20 17:43:09 YEKT 2024
 base.0=/Users/ilamakoveev/Work/maksimal_test/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -17,25 +17,14 @@ class S {
 
   static const String password_edit_text = 'Пароль';
 
-  //registration
+  //home
 
-  static const String on = 'На';
+  static const String followers = 'Следит за';
 
-  static const String error_email = 'Введите корректный e-mail';
+  //home
 
-  static const String error_password = 'Пароль не должен быть меньше 6 символов';
+  static const String user_detail_title = 'Информация о';
 
-  static const String send_code_to_email = 'отправлена ссылка для подтверждения регистрации';
-
-  static const String tooltips_for_create_account = 'Для создания аккаунта заполните данные';
-
-  static const String confirm_password = 'Подтвердите пароль';
-
-  static const String create = 'Создать';
-
-  static const String user_agreements = 'Принимаю условия пользовательского соглашения и условия обработки персональных данных';
-
-  static const String agreemets_for_advertising = 'Принимаю условия пользовательского соглашения и условия обработки персональных данных';
 
 
 

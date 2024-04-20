@@ -40,15 +40,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final userCount = await _followersUserUseCase(params: event.login);
     print(userCount.error?.error.toString());
     print(userCount.error?.response.toString());
-    if(userCount.data == null){
-      print('not ok');
-      emit(SearchError(state.pageState.copyWith(fError:'${S.error_title} ${userCount.error?.response?.statusCode}')));
-
+    if (userCount.data == null) {
+      emit(SearchError(state.pageState.copyWith(
+          fError:
+              '${S.error_title} ${userCount.error?.response?.statusCode}')));
+    } else {
+      emit(SearchDone(
+          state.pageState.copyWith(fCount: userCount.data?.length.toString())));
     }
-    else{
-      print('ok');
-      emit(SearchDone(state.pageState.copyWith(fCount: userCount.data?.length.toString())));
-    }
-
   }
 }

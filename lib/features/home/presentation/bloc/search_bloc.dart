@@ -24,15 +24,22 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   void onSearchUsers(SearchUsers event, Emitter<SearchState> emit) async {
-    emit(SearchLoading(state.pageState));
+    if(event.value.isEmpty){
+      emit(SearchError(state.pageState.copyWith(error: S.empty_value)));
 
-    final users = await _searchUserUseCase(params: event.value);
-
-    if (users.data!.items.isNotEmpty) {
-      emit(SearchDone(state.pageState.copyWith(users: users.data)));
-    } else {
-      emit(SearchError(state.pageState.copyWith(error: S.profile_error)));
     }
+    else{
+      emit(SearchLoading(state.pageState));
+
+      final users = await _searchUserUseCase(params: event.value);
+
+      if (users.data!.items.isNotEmpty) {
+        emit(SearchDone(state.pageState.copyWith(users: users.data)));
+      } else {
+        emit(SearchError(state.pageState.copyWith(error: S.profile_error)));
+      }
+    }
+
   }
 
   void onGetFollowersUser(

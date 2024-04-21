@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maksimal_test/core/constants/strings.dart';
 import 'package:maksimal_test/features/home/presentation/bloc/search_bloc.dart';
 import 'package:maksimal_test/features/home/presentation/widgets/user_card.dart';
 import 'package:maksimal_test/injection_container.dart';
@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<SearchBloc>(),
       child: Scaffold(
-        appBar: AppBar(title: Text(";smldfv")),
+        appBar: AppBar(title: const Text(S.search_user)),
         body: _buildBody(),
       ),
     );
@@ -53,9 +53,18 @@ class HomePage extends StatelessWidget {
   Widget _buildTextField() {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        return TextField(
-          style: TextStyle(color: Colors.black),
-          onSubmitted: (value) => _onSubmittedTextField(context, value),
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelStyle: TextStyle(color: Colors.black),
+              labelText: S.prees_button_to_search,
+              hintText: S.el_mkv,
+            ),
+            style: const TextStyle(color: Colors.black),
+            onSubmitted: (value) => _onSubmittedTextField(context, value),
+          ),
         );
       },
     );

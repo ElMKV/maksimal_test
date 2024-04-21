@@ -17,23 +17,28 @@ class S {
 
   static const String password_edit_text = 'Пароль';
 
-  //home
 
+  //home
   static const String followers = 'Следит за';
-
-  //home
 
   static const String user_detail_title = 'Информация о';
 
+  static const String search_user = 'Поиск пользователей';
 
+  static const String prees_button_to_search = 'Для поиска нажмите ввод';
 
-
+  static const String el_mkv = 'ELMKV';
 
 
   //errors
   static const String error_title = "Ошибка";
+
   static const String auth_error = "Ошибка авторизации";
+
   static const String profile_error = "Ошибка получения профилей";
+
+  static const String empty_value = "Поле не может быть пустое";
+
 
 
 }

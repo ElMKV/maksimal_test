@@ -14,10 +14,10 @@ ThemeData theme() {
     ),
     colorScheme: const ColorScheme(
       surface: Colors.black,
-      onSurface: Colors.black,
+      onSurface: Colors.white,
       secondaryContainer: Colors.white,
       brightness: Brightness.light,
-      primary: Colors.white,
+      primary: Colors.black,
       onPrimary: Colors.white,
       secondary: Colors.white,
       onSecondary: Colors.white,

@@ -5,6 +5,7 @@ import 'package:maksimal_test/core/constants/strings.dart';
 import 'package:maksimal_test/features/home/presentation/bloc/search_bloc.dart';
 import 'package:maksimal_test/features/home/presentation/widgets/user_card.dart';
 import 'package:maksimal_test/features/user_detail/presentation/bloc/user_bloc.dart';
+import 'package:maksimal_test/features/user_detail/presentation/widgets/user_card_detail.dart';
 import 'package:maksimal_test/injection_container.dart';
 
 import '../../../home/data/models/users.dart';
@@ -24,31 +25,6 @@ class UserDetailPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildBody() {
-    return BlocConsumer<UserBloc, UserState>(
-      listener: (context, state) {
-        if (state is UserError) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.pageState.error)));
-        }
-      },
-      builder: (context, state) {
-        final spr = state.pageState.repos;
-        if (state is UserLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        return ListView.builder(
-          shrinkWrap: true,
-          itemCount: spr.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Text(spr[index].name);
-          },
-        );
-      },
-    );
-  }
-
   AppBar _buildAppBar() {
     return AppBar(
       title: Text('${S.user_detail_title} ${user.login}'),
@@ -72,6 +48,30 @@ class UserDetailPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildBody() {
+    return BlocConsumer<UserBloc, UserState>(
+      listener: (context, state) {
+        if (state is UserError) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.pageState.error)));
+        }
+      },
+      builder: (context, state) {
+        final spr = state.pageState.repos;
+        if (state is UserLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: spr.length,
+          itemBuilder: (BuildContext context, int index) {
+            return UserCardDetail(repo: spr[index]);
+          },
+        );
+      },
     );
   }
 }

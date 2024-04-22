@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maksimal_test/config/routes/routes.dart';
 import 'package:maksimal_test/config/theme/app_themes.dart';
-import 'package:maksimal_test/features/authorization/data/models/auth.dart';
-import 'package:maksimal_test/features/authorization/presentation/pages/auth/auth_page.dart';
 import 'package:maksimal_test/features/home/presentation/pages/home_page.dart';
 import 'package:maksimal_test/injection_container.dart';
 

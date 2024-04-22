@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:maksimal_test/core/constants/constant.dart';
-import 'package:maksimal_test/features/authorization/data/models/auth.dart';
 import 'package:maksimal_test/features/home/data/models/users.dart';
 import 'package:retrofit/retrofit.dart';
 

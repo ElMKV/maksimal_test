@@ -7,24 +7,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:maksimal_test/features/user_detail/data/models/repo.dart';
+import 'package:maksimal_test/features/user_detail/presentation/widgets/user_card_detail.dart';
+import 'package:maksimal_test/injection_container.dart';
 
-import 'package:maksimal_test/main.dart';
+Future<void> main() async {
+  await initializeDependencies();
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('finds a Text widgets', (tester) async {
+    final repo = Repo(
+      updatedAt: DateTime.now(),
+      name: 'Flutter',
+      language: 'Dart',
+        defaultBranch: 'master'
+    );
+    // Build an App with a Text widget that displays the letter 'H'.
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+          body: UserCardDetail(
+        repo: repo,
+      )),
+    ));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text(repo.defaultBranch), findsOneWidget);
   });
 }

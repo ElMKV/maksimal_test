@@ -1,9 +1,5 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:maksimal_test/features/authorization/data/data_sources/auth_api_service.dart';
-import 'package:maksimal_test/features/authorization/data/models/auth.dart';
-import 'package:maksimal_test/features/authorization/domain/repository/auth_repository.dart';
 import 'package:maksimal_test/features/home/data/data_sources/search_api_service.dart';
 import 'package:maksimal_test/features/home/data/models/users.dart';
 import 'package:maksimal_test/features/home/domain/repository/search_repository.dart';

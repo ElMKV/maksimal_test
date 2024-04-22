@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maksimal_test/core/constants/strings.dart';
 import 'package:maksimal_test/features/home/data/models/users.dart';
@@ -28,7 +27,7 @@ class UserCard extends StatelessWidget {
                   child: ListTile(
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(38.0),
-                      child: Image.network(
+                      child: user.avatarUrl != '' ? Image.network(
                         user.avatarUrl,
                         fit: BoxFit.fill,
                         loadingBuilder: (BuildContext context, Widget child,
@@ -41,7 +40,7 @@ class UserCard extends StatelessWidget {
                                 : null,
                           );
                         },
-                      ),
+                      ) : FlutterLogo(),
                     ),
                     title: Text(user.login, overflow: TextOverflow.fade,),
                     trailing: Text(state is SearchError ? state.pageState.fError : '${S.followers} ${state.pageState.fCount}'),
